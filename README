@@ -1,7 +1,7 @@
 About BitMail
 -------------
 
-https://launchpad.net/bitmail
+https://github.com/benkietzman/bitmail
 
 The BitMail project is used to provide IMAP or POP services
 along with SMTP service on top of the PyBitmessage project.
@@ -49,7 +49,7 @@ BitMail Installation Instructions
 ---------------------------------
 Use the following commands to install BitMail:
 
-bzr branch lp:bitmail
+git clone https://github.com/benkietzman/bitmail.git
 cd bitmail
 make
 sudo make install
@@ -91,4 +91,4 @@ version of the BitMail project.  You can do this using
 the following command from within the source code
 directory:
 
-bzr pull :parent
+git pull
