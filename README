@@ -1,0 +1,94 @@
+About BitMail
+-------------
+
+https://launchpad.net/bitmail
+
+The BitMail project is used to provide IMAP or POP services
+along with SMTP service on top of the PyBitmessage project.
+BitMail utilizes the PyBitmessage API.  BitMail provides SSL
+encryption and listens on all interfaces.  It is designed to
+run as a daemon via the --daemon option, but can provide
+logging to the terminal when not run as a daemon.
+
+BitMail expects a configuration file named bitmail.conf.
+The configuration file is in JSON format.  The default
+configuration directory is: /etc/bitmail.
+
+
+Enable Access to the PyBitmessage API
+-------------------------------------
+You must add the following fields to your PyBitmessage
+keys.dat file:
+
+apienabled = true
+apiport = 8442
+apiinterface = 127.0.0.1
+apiusername = [user]
+apipassword = [password]
+daemon = true
+
+The keys.dat file is most likely located here:
+
+~/.config/PyBitmessage/keys.dat
+
+The should swap in your own user and password details.
+The daemon field is optional.  Once you have the values
+configured, you should place the apiport, apiinterface,
+apiusername, and apipassword values into their respective
+"BitMessage Port", "BitMessage Server", "BitMessage User",
+and "BitMessage Password" fields in the bitmail.conf
+configuration file.
+
+
+Dependencies
+------------
+sudo apt-get install libbz2-dev libexpat1-dev libsmbclient-dev libssl-dev libtar-dev libxmlrpc-c3-dev zlib1g-dev
+
+
+BitMail Installation Instructions
+---------------------------------
+Use the following commands to install BitMail:
+
+bzr branch lp:bitmail
+cd bitmail
+make
+sudo make install
+make clean
+
+If the "make" line complains about missing functions, that
+means you will need to install the associated library
+dependancy.
+
+Among other things, the "sudo make install" command will
+install the bitmail.conf file for use as an UPSTART
+service.  It will also install a default bitmail.conf file
+in the /etc/bitmail directory.  The default configuration
+directory can be overriden using the --conf argument.
+
+Here is an example of how to run bitmail from the
+terminal and see the output messages:
+
+sudo /usr/local/bin/bitmail
+
+Here is an example of how to run bitmail from the
+terminal with a custom configuration directory:
+
+sudo /usr/local/bin/bitmail --conf=/some/other/dir
+
+Here is an example of how to run bitmail in daemon mode:
+
+sudo /usr/local/bin/bitmail --daemon
+
+You can also see a usage statement using:
+
+/usr/local/bin/bitmail --help
+
+
+BitMail Update Instructions
+---------------------------
+There may be times when you want to pull down an updated
+version of the BitMail project.  You can do this using
+the following command from within the source code
+directory:
+
+bzr pull :parent

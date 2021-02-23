@@ -1,0 +1,12 @@
+[Unit]
+Description=BitMail daemon
+
+[Service]
+Type=simple
+Environment="LD_LIBRARY_PATH=/usr/local/lib"
+ExecStart=/usr/local/bin/bitmail --conf=/etc/bitmail
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=multi-user.target
