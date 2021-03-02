@@ -14,11 +14,16 @@ bin/bitmail: ../common/libcommon.a obj/bitmail.o
 	-if [ ! -d bin ]; then mkdir bin; fi;
 	g++ -ggdb -o bin/bitmail obj/bitmail.o -L../common -lbz2 -lcommon -lcrypto -lexpat -lmjson -lnsl -lpthread -lrt -lssl -ltar -lxmlrpc -lxmlrpc_client -lxmlrpc_util -lz
 
-../common/libcommon.a:
-	-if [ ! -d ../common ]; then cd ..; bzr branch lp:common; cd -; fi;
-	cd ../common; ./configure; make;
+../common/libcommon.a: ../common/Makefile
+	cd ../common; make;
 
-obj/bitmail.o: bitmail.cpp
+../common/Makefile: ../common/configure
+	cd ../common; ./configure;
+
+../common/configure:
+	cd ../; git clone https://github.com/benkietzman/common.git
+
+obj/bitmail.o: bitmail.cpp ../common/Makefile
 	-if [ ! -d obj ]; then mkdir obj; fi;
 	g++ -Wall -ggdb -std=c++14 -c bitmail.cpp -o obj/bitmail.o -I../common
 
