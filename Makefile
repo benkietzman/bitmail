@@ -12,7 +12,7 @@ all: bin/bitmail
 
 bin/bitmail: ../common/libcommon.a obj/bitmail.o
 	-if [ ! -d bin ]; then mkdir bin; fi;
-	g++ -ggdb -o bin/bitmail obj/bitmail.o -L../common -lbz2 -lcommon -lcrypto -lexpat -lmjson -lnsl -lpthread -lrt -lssl -ltar -lxmlrpc -lxmlrpc_client -lxmlrpc_util -lz
+	g++ -ggdb -o bin/bitmail obj/bitmail.o -L../common -lbz2 -lcommon -lcrypto -lexpat -lmjson -lpthread -lrt -lssl -ltar -lxmlrpc -lxmlrpc_client -lxmlrpc_util -lz
 
 ../common/libcommon.a: ../common/Makefile
 	cd ../common; make;
