@@ -344,7 +344,7 @@ int main(int argc, char *argv[])
           fd_set readfds;
           int nfds;
           socklen_t clilen;
-          sockaddr_in cli_addr;
+          sockaddr_in6 cli_addr;
           clilen = sizeof(cli_addr);
           while (!bExit)
           {
@@ -370,7 +370,7 @@ int main(int argc, char *argv[])
                   if (FD_ISSET(j->second, &readfds))
                   {
                     int fdData;
-                    if ((fdData = accept(j->second, (struct sockaddr *)&cli_addr, &clilen)) >= 0)
+                    if ((fdData = accept(j->second, (sockaddr *)&cli_addr, &clilen)) >= 0)
                     {
                       SSL *ssl = SSL_new(ctx);
                       SSL_set_fd(ssl, fdData);
